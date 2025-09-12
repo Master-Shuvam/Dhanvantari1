@@ -3,7 +3,7 @@
 import React from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { HeroSection } from '@/components/sections/HeroSection';
+import  HeroSection  from '@/components/sections/HeroSection';
 import { FeaturesSection } from '@/components/sections/FeaturesSection';
 import { CTASection } from '@/components/sections/CTASection';
 
@@ -22,7 +22,7 @@ const DhanvantariLanding = () => {
       }}
     >
       <Header onGetStarted={handleGetStarted} />
-      <HeroSection onGetStarted={handleGetStarted} />
+      <HeroSection />
       <FeaturesSection />
       <CTASection onGetStarted={handleGetStarted} />
       <Footer />
@@ -63,8 +63,18 @@ const DhanvantariLanding = () => {
             transform: translateY(0);
           }
         }
+
+        @keyframes shimmer {
+          0% {
+            left: -100%;
+          }
+          100% {
+            left: 100%;
+          }
+        }
       `}</style>
     </div>
   );
 };
+
 export default DhanvantariLanding;

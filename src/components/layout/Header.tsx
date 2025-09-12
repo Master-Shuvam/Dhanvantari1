@@ -1,6 +1,6 @@
 import React from 'react';
 import { Stethoscope } from 'lucide-react';
-import { Button } from '../ui/Button';
+import { Button } from '../ui/Button'; // Assuming you have this component
 
 interface HeaderProps {
   onGetStarted: () => void;
@@ -13,96 +13,50 @@ export const Header: React.FC<HeaderProps> = ({ onGetStarted }) => {
     { href: '#contact', label: 'Contact' },
   ];
 
-  const handleNavLinkHover = (e: React.MouseEvent<HTMLAnchorElement>, isEnter: boolean) => {
-    const target = e.target as HTMLAnchorElement;
-    target.style.color = isEnter ? '#14b8a6' : '#374151';
-  };
-
   return (
-    <nav
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '1rem 2rem',
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-        backdropFilter: 'blur(20px)',
-        borderBottom: '1px solid rgba(20, 184, 166, 0.1)',
-        position: 'sticky',
-        top: 0,
-        zIndex: 50,
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
-      }}
-    >
-      {/* Logo Section */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-        <div
-          style={{
-            width: '48px',
-            height: '48px',
-            background: 'linear-gradient(135deg, #14b8a6, #0d9488)',
-            borderRadius: '16px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 8px 32px rgba(20, 184, 166, 0.3)',
-          }}
-        >
-          <Stethoscope className="w-6 h-6 text-white" />
-        </div>
-        <div>
-          <h1
-            style={{
-              fontSize: '1.5rem',
-              fontWeight: '700',
-              color: '#1f2937',
-              margin: 0,
-              lineHeight: '1.2',
-            }}
-          >
-            Dhanvantari
-          </h1>
-          <p
-            style={{
-              fontSize: '0.875rem',
-              color: '#6b7280',
-              margin: 0,
-              lineHeight: '1.2',
-            }}
-          >
-            AI Healthcare Companion
-          </p>
-        </div>
-      </div>
+    // 1. The outer container that provides the top margin and sticky positioning.
+    // It spans the full width to correctly center the nav element inside.
+    <header className="flex sticky top-4 z-50 px-6 content-center w-screen items-center">
+      <div className='w-[96vw]'>
+        <nav className="mx-auto flex items-center justify-between rounded-2xl border border-white/30 bg-white/75 px-6 py-3 shadow-xl shadow-black/10 backdrop-blur-2xl">
 
-      {/* Navigation */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-        {/* Navigation Links */}
-        <div style={{ display: 'flex', gap: '2rem' }}>
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              style={{
-                color: '#374151',
-                textDecoration: 'none',
-                fontWeight: '500',
-                transition: 'color 0.3s ease',
-                fontSize: '1rem',
-              }}
-              onMouseEnter={(e) => handleNavLinkHover(e, true)}
-              onMouseLeave={(e) => handleNavLinkHover(e, false)}
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
+          {/* Logo Section */}
+          <div className="flex items-center gap-3">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-teal-500 to-teal-600 shadow-lg shadow-teal-500/30">
+              <Stethoscope className="h-6 w-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-gray-800">
+                Dhanvantari
+              </h1>
+              <p className="text-sm text-gray-500">
+                AI Healthcare Companion
+              </p>
+            </div>
+          </div>
 
-        {/* CTA Button */}
-        <Button onClick={onGetStarted} size="md">
-          Get Started
-        </Button>
+          {/* Navigation & CTA Section */}
+          <div className="flex items-center gap-4 md:gap-8">
+            {/* Desktop Navigation Links */}
+            <div className="hidden items-center gap-6 md:flex">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="font-medium text-gray-600 transition-colors hover:text-teal-600"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <Button onClick={onGetStarted} size="md">
+              Get Started
+            </Button>
+          </div>
+        </nav>
       </div>
-    </nav>
+    </header>
   );
 };
