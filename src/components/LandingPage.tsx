@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import HeroSection from '@/components/sections/HeroSection';
@@ -9,11 +9,13 @@ import { FeaturesSection } from '@/components/sections/FeaturesSection';
 import { CTASection } from '@/components/sections/CTASection';
 
 const DhanvantariLanding = () => {
+  
+  const [showAuth, setShowAuth] = useState(false);
   const handleGetStarted = () => {
-    // This would navigate to your main/home page
     console.log('Navigating to home page...');
-    alert('This would navigate to your main/home page');
+    setShowAuth(true);
   };
+
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -39,12 +41,12 @@ const DhanvantariLanding = () => {
         </div>
 
         <div className='m-[2vh]'>
-          <HeroSection2 onGetStarted={handleGetStarted} />
+          <HeroSection2 onGetStarted={handleGetStarted} showAuth={showAuth}  />
         </div>
 
         {/* Features Section with Glass Effect */}
         <div className="relative bg-white/10 backdrop-blur-sm border-y border-white/20">
-          <FeaturesSection />
+            <FeaturesSection />
         </div>
 
         {/* CTA Section with Glass Effect */}

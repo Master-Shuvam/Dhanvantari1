@@ -1,9 +1,7 @@
 import { DefaultUser, DefaultSession } from "next-auth";
-import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "./prisma";
-import { signIn } from "next-auth/react";
 
 declare module "next-auth" {
     interface Session {
@@ -37,22 +35,6 @@ export const NEXT_AUTH_CONFIG = {
                     email: profile.email,
                     image: profile.picture,
                     accessToken: tokens.access_token
-                }
-            },
-        }),
-        GitHubProvider({
-            clientId: process.env.GITHUB_CLIENT_ID ?? "",
-            clientSecret: process.env.GITHUB_CLIENT_SECRET ?? "",
-            authorization: { params: { scope: "read:user user:email" } },
-            profile(profile, tokens) {
-                // console.log("providers :", profile ,tokens);
-                return {
-                    id: String(profile.id),
-                    name: profile.name,
-                    email: profile.email,
-                    image: profile.avatar_url,
-                    accessToken: tokens.access_token,
-                    login: profile.login
                 }
             },
         }),
@@ -97,6 +79,6 @@ export const NEXT_AUTH_CONFIG = {
         }
     },
     pages: {
-        signIn: '/signin',
+        signIn: '/',
     }
 }
