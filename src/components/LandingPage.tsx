@@ -1,21 +1,32 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import HeroSection from '@/components/sections/HeroSection';
 import HeroSection2 from '@/components/sections/HeroSection2';
 import { FeaturesSection } from '@/components/sections/FeaturesSection';
 import { CTASection } from '@/components/sections/CTASection';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 const DhanvantariLanding = () => {
   
   const [showAuth, setShowAuth] = useState(false);
+  const {data: session,status} = useSession();
+  const router = useRouter();
   const handleGetStarted = () => {
     console.log('Navigating to home page...');
     setShowAuth(true);
   };
 
+  useEffect(()=>{
+    if(status=='authenticated') router.push('/home');
+  },[status,session]);
+
+  // if(status=="authenticated"){
+  //   router.push('/home');
+  // }
 
   return (
     <div className="relative min-h-screen overflow-hidden">
