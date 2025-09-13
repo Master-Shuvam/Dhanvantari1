@@ -31,24 +31,27 @@ const DhanvantariLanding = () => {
 
       {/* Global Video Overlay */}
       <div className="fixed inset-0 bg-gradient-to-br from-slate-900/20 via-transparent to-emerald-900/20 z-10" />
-      
+
       {/* All Content Container */}
       <div className="relative z-20 min-h-screen">
-        <Header onGetStarted={handleGetStarted} />
-        
-        {/* Remove individual video backgrounds from HeroSection2 */}
-        <HeroSection2 onGetStarted={handleGetStarted} />
-        
+        <div className='fixed z-50'>
+          <Header onGetStarted={handleGetStarted} />
+        </div>
+
+        <div className='m-[2vh]'>
+          <HeroSection2 onGetStarted={handleGetStarted} />
+        </div>
+
         {/* Features Section with Glass Effect */}
         <div className="relative bg-white/10 backdrop-blur-sm border-y border-white/20">
           <FeaturesSection />
         </div>
-        
+
         {/* CTA Section with Glass Effect */}
         <div className="relative bg-white/5 backdrop-blur-sm">
           <CTASection onGetStarted={handleGetStarted} />
         </div>
-        
+
         {/* Footer with Glass Effect */}
         <div className="relative bg-white/10 backdrop-blur-sm border-t border-white/20">
           <Footer />

@@ -36,16 +36,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
           <div className="w-full relative overflow-hidden">
             {/* Main Glass Panel */}
             <div className="relative bg-gradient-to-br from-white/15 via-white/10 to-white/5 backdrop-blur-2xl rounded-[3rem] border border-white/20 p-8 md:p-16 shadow-2xl liquid-glass-container">
-              
+
               {/* Animated Glass Reflection */}
               <div className="absolute inset-0 bg-gradient-to-tr from-white/20 via-transparent to-transparent rounded-[3rem] shimmer-effect" />
-              
+
               {/* Liquid Distortion Elements */}
               <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-teal-400/30 to-emerald-500/30 backdrop-blur-3xl rounded-full blur-2xl liquid-blob-1" />
               <div className="absolute -bottom-16 -left-16 w-56 h-56 bg-gradient-to-tr from-blue-400/20 to-cyan-500/20 backdrop-blur-3xl rounded-full blur-3xl liquid-blob-2" />
-              
+
               <div className="relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                
+
                 {/* Left Content */}
                 <div className="space-y-8">
                   {/* Enhanced Badge with Liquid Effect */}
@@ -98,14 +98,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
                 <div className="relative">
                   {/* Main Demo Card with Liquid Glass Effect */}
                   <div className="relative bg-gradient-to-br from-white/25 via-white/15 to-white/10 backdrop-blur-3xl rounded-[2rem] p-8 shadow-2xl border border-white/30 overflow-hidden liquid-demo-card">
-                    
+
                     {/* Flowing Liquid Top Bar */}
                     <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-teal-400 via-emerald-400 to-cyan-400 rounded-t-[2rem] liquid-flow" />
-                    
+
                     {/* Internal Liquid Blobs */}
                     <div className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-br from-teal-400/40 to-emerald-500/40 rounded-full blur-xl liquid-internal-1" />
                     <div className="absolute bottom-6 left-6 w-12 h-12 bg-gradient-to-tr from-cyan-400/30 to-blue-500/30 rounded-full blur-lg liquid-internal-2" />
-                    
+
                     {/* Content */}
                     <div className="relative z-10 space-y-6">
                       {/* Header */}
@@ -120,8 +120,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
 
                       {/* Status */}
                       <div className="text-white/80 font-medium">
+                        <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" />
                         <p className="flex items-center gap-2">
-                          <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" />
                           Analyzing symptoms...
                         </p>
                       </div>
@@ -145,11 +145,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
                             Processing...
                           </span>
                         </div>
-                        
+
                         {/* Liquid Progress Bar */}
                         <div className="w-full bg-white/20 backdrop-blur-sm rounded-full h-4 overflow-hidden shadow-inner border border-white/30">
-                          <div className="h-full bg-gradient-to-r from-teal-400 via-emerald-400 to-cyan-400 rounded-full progress-animate shadow-lg liquid-progress" 
-                               style={{ animationDelay: '0.5s' }} />
+                          <div className="h-full bg-gradient-to-r from-teal-400 via-emerald-400 to-cyan-400 rounded-full progress-animate shadow-lg liquid-progress"
+                            style={{ animationDelay: '0.5s' }} />
                         </div>
                       </div>
 
@@ -167,19 +167,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
                   </div>
 
                   {/* Floating Liquid Glass Elements */}
-                  <div 
+                  <div
                     className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-pink-400/80 to-rose-500/80 backdrop-blur-2xl rounded-2xl flex items-center justify-center shadow-2xl border border-white/20 liquid-heart"
                   >
                     <Heart className="w-8 h-8 text-white fill-current drop-shadow-lg" />
                   </div>
 
-                  <div 
+                  <div
                     className="absolute -bottom-6 -left-6 w-12 h-12 bg-gradient-to-br from-emerald-400/80 to-teal-500/80 backdrop-blur-2xl rounded-xl flex items-center justify-center shadow-xl border border-white/20 liquid-sparkle"
                   >
                     <Sparkles className="w-6 h-6 text-white drop-shadow-md" />
                   </div>
-                  
-                  <div 
+
+                  <div
                     className="absolute top-1/3 -right-8 w-8 h-8 bg-gradient-to-br from-cyan-400/80 to-blue-500/80 backdrop-blur-2xl rounded-full flex items-center justify-center shadow-lg border border-white/20 liquid-dot"
                   >
                     <div className="w-3 h-3 bg-white rounded-full animate-pulse shadow-sm" />
