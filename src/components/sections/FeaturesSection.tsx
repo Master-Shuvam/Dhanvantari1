@@ -90,17 +90,19 @@ export const FeaturesSection = () => {
             {/* <div className='border-white/60'> */}
 
             {/* Main Title */}
-            <h3 className="text-5xl md:text-6xl font-black text-slate-800 mb-4 leading-tight">
-              Advanced Healthcare
-            </h3>
-            <h3 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-teal-500 via-emerald-500 to-cyan-500 bg-clip-text text-transparent leading-tight mb-8">
-              Solutions
-            </h3>
+            <div className='from-slate-900/40 via-transparent to-emerald-900/30 backdrop-blur-sm rounded-4xl p-4'>
+              <h3 className="text-5xl md:text-6xl font-black text-slate-800 mb-4 leading-tight">
+                Advanced Healthcare
+              </h3>
+              <h3 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-teal-500 via-emerald-500 to-cyan-500 bg-clip-text text-transparent leading-tight mb-8">
+                Solutions
+              </h3>
 
-            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-              Experience the future of healthcare with AI-powered diagnosis, multilingual support,
-              and 24/7 accessibility designed specifically for Indian healthcare needs
-            </p>
+              <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+                Experience the future of healthcare with AI-powered diagnosis, multilingual support,
+                and 24/7 accessibility designed specifically for Indian healthcare needs
+              </p>
+            </div>
           </div>
 
           {/* Features Grid */}
