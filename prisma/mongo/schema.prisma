@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../src/generated/mongo"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGO_URL")
+}
+
+model MedicalHistory {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   // used for mapping in postgres
+
+  diseases  String[] // list of disease names
+  allergies String[] // list of allergies
+  meds      String[] // current medications
+
+  // Flexible JSON field for additional data
+  extraInfo Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
