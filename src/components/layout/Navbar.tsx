@@ -34,22 +34,22 @@ export default function Navbar() {
 
             <div className="hidden md:flex items-center space-x-1">
               <a
-                href="#"
+                href="/ai/general"
                 className="px-3 py-2 text-sm font-medium text-teal-600 bg-teal-50 rounded-md hover:bg-teal-100 transition-colors"
               >
-                Overview
+                General
               </a>
               <a
-                href="#"
+                href="/dispensaries"
                 className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
               >
-                Analytics
+                Dispensaries
               </a>
               <a
-                href="#"
+                href="/bloodbank"
                 className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
               >
-                Projects
+                Blood Bank
               </a>
               <a
                 href="#"
