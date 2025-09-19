@@ -1,16 +1,29 @@
 "use client";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Sidebar from './sections/Sidebar';
-import ChatArea from './ChatArea';
 import Navbar from './layout/Navbar';
 import { Panel, PanelGroup } from 'react-resizable-panels';
 import { Message } from '../types';
 import HospitalRecommendations from '@/components/HospitalSection/HospitalRecommendations';
 import ResizeHandle from '@/components/ResizeHandler';
+import ChatContainer from './ChatContainer';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function AIInterface() {
     const [messages, setMessages] = useState<Message[]>([]);
     const [isLoading, setIsLoading] = useState(false);
+    const { data: session, status } = useSession();
+    const [userId, setUserId] = useState<string>();
+    const router = useRouter();
+
+    if (status == "unauthenticated") {
+        router.push('/');
+    }
+
+    useEffect(() => {
+        setUserId(session?.user.id);
+    }, [session])
 
     const handleSendMessage = async (content: any) => {
         const userMessage: Message = {
@@ -73,11 +86,7 @@ export default function AIInterface() {
 
                     {/* Chat Area Panel */}
                     <Panel defaultSize={40} minSize={40}>
-                        <ChatArea
-                            messages={messages}
-                            onSendMessage={handleSendMessage}
-                            isLoading={isLoading}
-                        />
+                        <ChatContainer userId={userId ?? ''} />
                     </Panel>
                 </PanelGroup>
             </div>

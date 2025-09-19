@@ -20,11 +20,11 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.16.1
+ * Prisma Client JS version: 6.16.2
  * Query Engine version: 1c57fdcd7e44b29b9313256c76699e91c3ac3c43
  */
 Prisma.prismaVersion = {
-  client: "6.16.1",
+  client: "6.16.2",
   engine: "1c57fdcd7e44b29b9313256c76699e91c3ac3c43"
 }
 
@@ -113,16 +113,35 @@ Prisma.NullTypes = {
  * Enums
  */
 
-exports.Prisma.MedicalHistoryScalarFieldEnum = {
+exports.Prisma.MedicalProblemScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  age: 'age',
-  diseases: 'diseases',
-  allergies: 'allergies',
-  meds: 'meds',
-  extraInfo: 'extraInfo',
+  title: 'title',
+  description: 'description',
+  symptoms: 'symptoms',
+  diagnosis: 'diagnosis',
+  severity: 'severity',
+  date: 'date',
+  resolved: 'resolved',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ChatMessageScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  content: 'content',
+  type: 'type',
+  timestamp: 'timestamp'
+};
+
+exports.Prisma.DiseasePredictionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  symptoms: 'symptoms',
+  predictions: 'predictions',
+  inputText: 'inputText',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -137,7 +156,9 @@ exports.Prisma.QueryMode = {
 
 
 exports.Prisma.ModelName = {
-  MedicalHistory: 'MedicalHistory'
+  MedicalProblem: 'MedicalProblem',
+  ChatMessage: 'ChatMessage',
+  DiseasePrediction: 'DiseasePrediction'
 };
 
 /**

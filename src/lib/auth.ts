@@ -1,7 +1,7 @@
 import { DefaultUser, DefaultSession } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { prisma } from "./prisma";
+import { postgres } from "./prisma";
 
 declare module "next-auth" {
     interface Session {
@@ -55,11 +55,10 @@ export const NEXT_AUTH_CONFIG = {
         //     },
         // }),
     ],
-    adapter: PrismaAdapter(prisma),
+    adapter: PrismaAdapter(postgres),
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
         jwt: async ({ user, token, account }: any) => {
-            // console.log("jwt :", user,token,account);
             if (user) {
                 token.uid = user.id;
             }
@@ -69,7 +68,6 @@ export const NEXT_AUTH_CONFIG = {
             return token;
         },
         session: ({ session, user}: any) => {
-            // console.log("session :", user,session);
             if (user.id) {
                 session.user.id = user.id;
                 session.user.accessToken = user.accessToken;

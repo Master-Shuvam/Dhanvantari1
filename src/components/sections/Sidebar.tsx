@@ -7,44 +7,102 @@ import {
     SparklesIcon,
     CodeBracketIcon,
     ChartBarIcon,
-    PencilSquareIcon,
-    PlusIcon
-} from '@heroicons/react/24/outline';
+    PlusIcon,
+    HeartIcon,
+    AcademicCapIcon,
+    BeakerIcon,
+    VideoCameraIcon,
+    PhoneIcon,
+    CpuChipIcon,
+    ShieldCheckIcon,
+    BuildingStorefrontIcon,
+    BoltIcon,
+} from "@heroicons/react/24/outline";
+import { StethoscopeIcon } from 'lucide-react';
 
 const suggestions = [
     {
         id: 1,
-        title: "Content Strategy",
-        category: "Marketing",
-        description: "Get personalized content ideas for your social media",
+        title: "Mental Health",
+        category: "Mental Care",
+        description: "Emotion detection, music therapy, therapy sessions, and hospital recommendations",
         icon: SparklesIcon,
         color: "bg-gradient-to-r from-teal-400 to-cyan-400"
     },
     {
         id: 2,
-        title: "Code Review",
-        category: "Development",
-        description: "Let me review your code and suggest improvements",
+        title: "Skin Care",
+        category: "Dermatology",
+        description: "Detect skin diseases through images and get medicine/cream suggestions",
         icon: CodeBracketIcon,
-        color: "bg-gradient-to-r from-teal-400 to-cyan-400"
+        color: "bg-gradient-to-r from-pink-400 to-rose-400"
     },
     {
         id: 3,
-        title: "Data Analysis",
-        category: "Analytics",
-        description: "Analyze your data and generate insights",
-        icon: ChartBarIcon,
-        color: "bg-gradient-to-r from-teal-400 to-cyan-400"
+        title: "Cardio Care",
+        category: "Cardiology",
+        description: "Detect possible heart issues from symptoms and track cardio health",
+        icon: HeartIcon,
+        color: "bg-gradient-to-r from-red-400 to-orange-400"
     },
     {
         id: 4,
-        title: "Writing Assistant",
-        category: "Content",
-        description: "Help with writing, editing, and proofreading",
-        icon: PencilSquareIcon,
-        color: "bg-gradient-to-r from-teal-400 to-cyan-400"
+        title: "Neuro Care",
+        category: "Neurology",
+        description: "Detect neurological issues based on symptoms",
+        icon: CpuChipIcon,
+        color: "bg-gradient-to-r from-indigo-400 to-purple-400"
+    },
+    {
+        id: 6,
+        title: "Medical Reports",
+        category: "Diagnostics",
+        description: "Analyze blood tests, MRI, X-rays, and generate insights",
+        icon: ChartBarIcon,
+        color: "bg-gradient-to-r from-green-400 to-emerald-400"
+    },
+    {
+        id: 7,
+        title: "General Care",
+        category: "General Medicine",
+        description: "Basic health queries and symptom checks",
+        icon: StethoscopeIcon,
+        color: "bg-gradient-to-r from-blue-400 to-cyan-400"
+    },
+    {
+        id: 8,
+        title: "Ortho Care",
+        category: "Orthopedics",
+        description: "Bone and joint issue detection and advice",
+        icon: ShieldCheckIcon,
+        color: "bg-gradient-to-r from-yellow-400 to-amber-400"
+    },
+    {
+        id: 9,
+        title: "Nephro Care",
+        category: "Nephrology",
+        description: "Kidney-related symptom detection and analysis",
+        icon: BeakerIcon,
+        color: "bg-gradient-to-r from-lime-400 to-green-500"
+    },
+    {
+        id: 10,
+        title: "Oncology",
+        category: "Cancer Care",
+        description: "Cancer symptom analysis and treatment guidance",
+        icon: AcademicCapIcon,
+        color: "bg-gradient-to-r from-fuchsia-400 to-purple-500"
+    },
+    {
+        id: 11,
+        title: "Pediatrics",
+        category: "Child Care",
+        description: "Health support for infants, children, and adolescents",
+        icon: UserGroupIcon,
+        color: "bg-gradient-to-r from-sky-400 to-blue-500"
     }
 ];
+
 
 export default function Sidebar({ onSuggestionClick }: any) {
     const [activeItem, setActiveItem] = useState('suggestions');
@@ -76,8 +134,8 @@ export default function Sidebar({ onSuggestionClick }: any) {
                                 key={item.id}
                                 onClick={() => setActiveItem(item.id)}
                                 className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${activeItem === item.id
-                                        ? 'bg-teal-50 text-teal-700 border border-teal-200'
-                                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                                    ? 'bg-teal-50 text-teal-700 border border-teal-200'
+                                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                                     }`}
                             >
                                 <Icon className="w-5 h-5" />
@@ -92,11 +150,11 @@ export default function Sidebar({ onSuggestionClick }: any) {
             {activeItem === 'suggestions' && (
                 <div className="flex-1 p-4 overflow-y-auto">
                     <div className="mb-6">
-                        <h2 className="text-lg font-semibold text-gray-900 mb-2">AI Suggestions</h2>
+                        <h2 className="text-lg font-semibold text-gray-900 mb-2">Other Model's</h2>
                         <p className="text-sm text-gray-600">Discover what I can help you with</p>
                     </div>
 
-                    <div className="space-y-3">
+                    <div className="space-y-3 cursor-pointer">
                         {suggestions.map((suggestion) => {
                             const Icon = suggestion.icon;
                             return (

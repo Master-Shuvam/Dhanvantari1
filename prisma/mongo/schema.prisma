@@ -8,17 +8,54 @@ datasource db {
   url      = env("MONGO_URL")
 }
 
-model MedicalHistory {
+// model MedicalHistory {
+//   id        String   @id @default(auto()) @map("_id") @db.ObjectId
+//   userId    String   // used for mapping in postgres
+
+//   diseases  String[] // list of disease names
+//   allergies String[] // list of allergies
+//   meds      String[] // current medications
+
+//   // Flexible JSON field for additional data
+//   extraInfo Json?
+
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+// }
+
+model MedicalProblem {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String
+  title       String
+  description String
+  symptoms    String[]
+  diagnosis   String?
+  severity    String?
+  date        DateTime @default(now())
+  resolved    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("medical_problems")
+}
+
+model ChatMessage {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId    String   // used for mapping in postgres
+  userId    String
+  content   String
+  type      String   // 'user' or 'assistant'
+  timestamp DateTime @default(now())
 
-  diseases  String[] // list of disease names
-  allergies String[] // list of allergies
-  meds      String[] // current medications
+  @@map("chat_messages")
+}
 
-  // Flexible JSON field for additional data
-  extraInfo Json?
+model DiseasePrediction {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String
+  symptoms     String[]
+  predictions  Json     // Array of {disease: string, probability: number}
+  inputText    String
+  createdAt    DateTime @default(now())
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  @@map("disease_predictions")
 }

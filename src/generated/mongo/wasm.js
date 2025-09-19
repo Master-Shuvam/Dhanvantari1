@@ -35,11 +35,11 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.16.1
+ * Prisma Client JS version: 6.16.2
  * Query Engine version: 1c57fdcd7e44b29b9313256c76699e91c3ac3c43
  */
 Prisma.prismaVersion = {
-  client: "6.16.1",
+  client: "6.16.2",
   engine: "1c57fdcd7e44b29b9313256c76699e91c3ac3c43"
 }
 
@@ -85,16 +85,35 @@ Prisma.NullTypes = {
 /**
  * Enums
  */
-exports.Prisma.MedicalHistoryScalarFieldEnum = {
+exports.Prisma.MedicalProblemScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  age: 'age',
-  diseases: 'diseases',
-  allergies: 'allergies',
-  meds: 'meds',
-  extraInfo: 'extraInfo',
+  title: 'title',
+  description: 'description',
+  symptoms: 'symptoms',
+  diagnosis: 'diagnosis',
+  severity: 'severity',
+  date: 'date',
+  resolved: 'resolved',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ChatMessageScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  content: 'content',
+  type: 'type',
+  timestamp: 'timestamp'
+};
+
+exports.Prisma.DiseasePredictionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  symptoms: 'symptoms',
+  predictions: 'predictions',
+  inputText: 'inputText',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -109,7 +128,9 @@ exports.Prisma.QueryMode = {
 
 
 exports.Prisma.ModelName = {
-  MedicalHistory: 'MedicalHistory'
+  MedicalProblem: 'MedicalProblem',
+  ChatMessage: 'ChatMessage',
+  DiseasePrediction: 'DiseasePrediction'
 };
 /**
  * Create the Client
@@ -144,13 +165,12 @@ const config = {
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../../prisma/mongo",
-  "clientVersion": "6.16.1",
+  "clientVersion": "6.16.2",
   "engineVersion": "1c57fdcd7e44b29b9313256c76699e91c3ac3c43",
   "datasourceNames": [
     "db"
   ],
   "activeProvider": "mongodb",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -159,13 +179,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../../src/generated/mongo\"\n}\n\ndatasource db {\n  provider = \"mongodb\"\n  url      = env(\"MONGO_URL\")\n}\n\nmodel MedicalHistory {\n  id     String @id @default(auto()) @map(\"_id\") @db.ObjectId\n  userId String // used for mapping in postgres\n\n  age String?\n\n  diseases  String[] // list of disease names\n  allergies String[] // list of allergies\n  meds      String[] // current medications\n\n  // Flexible JSON field for additional data\n  extraInfo Json?\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n",
-  "inlineSchemaHash": "dc72b6e7de59999fc1f0aed518ca0ae1e8d0c981e934079084c0adaeacc33d37",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../../src/generated/mongo\"\n}\n\ndatasource db {\n  provider = \"mongodb\"\n  url      = env(\"MONGO_URL\")\n}\n\n// model MedicalHistory {\n//   id        String   @id @default(auto()) @map(\"_id\") @db.ObjectId\n//   userId    String   // used for mapping in postgres\n\n//   diseases  String[] // list of disease names\n//   allergies String[] // list of allergies\n//   meds      String[] // current medications\n\n//   // Flexible JSON field for additional data\n//   extraInfo Json?\n\n//   createdAt DateTime @default(now())\n//   updatedAt DateTime @updatedAt\n// }\n\nmodel MedicalProblem {\n  id          String   @id @default(auto()) @map(\"_id\") @db.ObjectId\n  userId      String\n  title       String\n  description String\n  symptoms    String[]\n  diagnosis   String?\n  severity    String?\n  date        DateTime @default(now())\n  resolved    Boolean  @default(false)\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n\n  @@map(\"medical_problems\")\n}\n\nmodel ChatMessage {\n  id        String   @id @default(auto()) @map(\"_id\") @db.ObjectId\n  userId    String\n  content   String\n  type      String // 'user' or 'assistant'\n  timestamp DateTime @default(now())\n\n  @@map(\"chat_messages\")\n}\n\nmodel DiseasePrediction {\n  id          String   @id @default(auto()) @map(\"_id\") @db.ObjectId\n  userId      String\n  symptoms    String[]\n  predictions Json // Array of {disease: string, probability: number}\n  inputText   String\n  createdAt   DateTime @default(now())\n\n  @@map(\"disease_predictions\")\n}\n",
+  "inlineSchemaHash": "e61610413ed40b786fb4b86ef49dd54c309e71361612f0ba6afe2376810f0d5e",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"MedicalHistory\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"_id\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"age\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"diseases\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"allergies\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"meds\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"extraInfo\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"MedicalProblem\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"_id\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"symptoms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"diagnosis\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"severity\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"resolved\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"medical_problems\"},\"ChatMessage\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"_id\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"timestamp\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"chat_messages\"},\"DiseasePrediction\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"_id\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"symptoms\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"predictions\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"inputText\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":\"disease_predictions\"}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

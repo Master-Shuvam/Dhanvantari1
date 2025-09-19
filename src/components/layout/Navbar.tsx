@@ -1,12 +1,24 @@
-// components/Navbar.js
-import { 
+import {
   BellIcon,
   ExclamationTriangleIcon,
   ChevronDownIcon,
   UserIcon
 } from '@heroicons/react/24/outline';
+import { useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
 
 export default function Navbar() {
+
+  const { data: session } = useSession();
+  const [userDetils, setUserDetails] = useState<any>();
+
+  useEffect(() => {
+    if (session?.user) {
+      console.log(session.user);
+      setUserDetails(session.user);
+    }
+  }, [session]);
+
   return (
     <nav className="bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,34 +31,34 @@ export default function Navbar() {
               </div>
               <h1 className="text-xl font-semibold text-gray-900">Dashboard</h1>
             </div>
-            
+
             <div className="hidden md:flex items-center space-x-1">
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="px-3 py-2 text-sm font-medium text-teal-600 bg-teal-50 rounded-md hover:bg-teal-100 transition-colors"
               >
                 Overview
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
               >
                 Analytics
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
               >
                 Projects
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
               >
                 Reports
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
               >
                 Settings
@@ -72,11 +84,14 @@ export default function Navbar() {
             <div className="relative">
               <button className="flex items-center space-x-3 p-1 rounded-lg hover:bg-gray-50 transition-colors group">
                 <div className="w-8 h-8 bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full flex items-center justify-center">
-                  <UserIcon className="w-4 h-4 text-white" />
+                  {userDetils?.image == null ?
+                    <UserIcon className="w-4 h-4 text-white" /> :
+                    <img className='rounded-2xl' src={userDetils.image} />
+                  }
                 </div>
                 <div className="hidden lg:block text-left">
-                  <p className="text-sm font-medium text-gray-900">John Doe</p>
-                  <p className="text-xs text-gray-500">john.doe@company.com</p>
+                  <p className="text-sm font-medium text-gray-900">{userDetils?.name}</p>
+                  <p className="text-xs text-gray-500">{userDetils?.email}</p>
                 </div>
                 <ChevronDownIcon className="w-4 h-4 text-gray-500 group-hover:text-gray-700" />
               </button>
