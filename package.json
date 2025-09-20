@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run db:setup && next build",
+    "db:setup": "npm run db:generate && npm run db:migrate:postgres",
+    "db:generate": "npx prisma generate --schema=./prisma/mongo/schema.prisma && npx prisma generate --schema=./prisma/postgres/schema.prisma",
+    "db:migrate:postgres": "npx prisma migrate deploy --schema=./prisma/postgres/schema.prisma",
+    "db:push:mongo": "npx prisma db push --schema=./prisma/mongo/schema.prisma",
     "start": "next start",
-    "lint": "eslint",
-    "dev:docker": "npm run prisma:docker & next dev",
-    "prisma:docker": "npm run prisma:migrate && npm run studio",
-    "prisma:migrate": "prisma migrate deploy"
+    "lint": "eslint"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
