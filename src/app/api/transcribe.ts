@@ -32,15 +32,15 @@ export default async function handler(
             }
 
             try {
-                const transcription = await openai.audio.transcriptions.create({
-                    file: fs.createReadStream(file.filepath),
-                    model: 'whisper-1',
-                    language: 'en',
-                })
+                // const transcription = await openai.audio.transcriptions.create({
+                //     file: fs.createReadStream(file.filepath),
+                //     model: 'whisper-1',
+                //     language: 'en',
+                // })
 
                 res.status(200).json({
                     success: true,
-                    text: transcription.text
+                    // text: transcription.text
                 })
 
             } catch (transcriptionError) {

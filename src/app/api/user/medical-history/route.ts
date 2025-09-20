@@ -12,24 +12,24 @@ export async function POST(req: Request) {
         const userId = session?.user.id;
         const body: CreateMedicalHistoryDto = await req.json();
 
-        const historyRaw = await mongo.medicalHistory.create({
-            data: {
-                userId: body.userId,
-                diseases: body.diseases ?? [],
-                allergies: body.allergies ?? [],
-                meds: body.meds ?? [],
-                extraInfo: body.extraInfo ?? {},
-            },
-        });
+        //  historyRaw = await mongo.medicalHistory.create({
+        //     data: {
+        //         userId: body.userId,
+        //         diseases: body.diseases ?? [],
+        //         allergies: body.allergies ?? [],
+        //         mconsteds: body.meds ?? [],
+        //         extraInfo: body.extraInfo ?? {},
+        //     },
+        // });
 
-        const history: MedicalHistory = {
-            ...historyRaw,
-            extraInfo: historyRaw.extraInfo === null ? undefined : historyRaw.extraInfo as Record<string, any>,
-        };
+        // const history: MedicalHistory = {
+        //     ...historyRaw,
+        //     extraInfo: historyRaw.extraInfo === null ? undefined : historyRaw.extraInfo as Record<string, any>,
+        // };
 
         const response: ApiResponse<MedicalHistory> = {
             success: true,
-            data: history,
+            // data: history,
         };
 
         return NextResponse.json(response, { status: 201 });
