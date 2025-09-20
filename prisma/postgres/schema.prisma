@@ -8,7 +8,7 @@ generator client {
   provider = "prisma-client-js"
   output   = "../../src/generated/prisma"
 }
-
+  
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -25,6 +25,12 @@ model User {
   accessToken    String?
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
+
+  //ayushman 
+  balance       String? @default("23000")
+  familySize    String? @default("4")
+  expieryTime   String? @default("3 months")
+  ayushManBharatID String? @default(cuid())
 
   // Optional for WebAuthn support
   Authenticator Authenticator[]

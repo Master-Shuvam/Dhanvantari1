@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from 'react';
-import Sidebar from './sections/Sidebar';
+import Sidebar, { modelSelected } from './sections/Sidebar';
 import Navbar from './layout/Navbar';
 import { Panel, PanelGroup } from 'react-resizable-panels';
 import { Message } from '../types';
@@ -9,6 +9,8 @@ import ResizeHandle from '@/components/ResizeHandler';
 import ChatContainer from './ChatContainer';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { useAtom } from 'jotai';
+import MedicalRecommendationSystem from './MedicalRecommendation';
 
 export default function AIInterface() {
     const [messages, setMessages] = useState<Message[]>([]);
@@ -16,10 +18,11 @@ export default function AIInterface() {
     const { data: session, status } = useSession();
     const [userId, setUserId] = useState<string>();
     const router = useRouter();
+    const [selectedModel] = useAtom(modelSelected);
 
-    if (status == "unauthenticated") {
-        router.push('/');
-    }
+    // if (status == "unauthenticated") {
+    //     router.push('/');
+    // }
 
     useEffect(() => {
         setUserId(session?.user.id);
@@ -79,7 +82,8 @@ export default function AIInterface() {
 
                     {/* Hospital Recommendations Panel */}
                     <Panel defaultSize={40} minSize={30} maxSize={50}>
-                        <HospitalRecommendations />
+                        {/* <HospitalRecommendations hospitalType='all' /> */}
+                        <MedicalRecommendationSystem />
                     </Panel>
 
                     <ResizeHandle />

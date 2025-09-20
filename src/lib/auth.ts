@@ -38,22 +38,6 @@ export const NEXT_AUTH_CONFIG = {
                 }
             },
         }),
-        // CredentialsProvider({
-        //     name: 'Credentials',
-        //     credentials: {
-        //         username: { label: 'email', type: 'text', placeholder: '' },
-        //         password: { label: 'password', type: 'password', placeholder: '' },
-        //     },
-        //     async authorize(credentials: any) {
-
-        //         return {
-        //             id: "user1",
-        //             name: "asd",
-        //             userId: "asd",
-        //             email: "ramdomEmail"
-        //         };
-        //     },
-        // }),
     ],
     adapter: PrismaAdapter(postgres),
     secret: process.env.NEXTAUTH_SECRET,
@@ -72,6 +56,8 @@ export const NEXT_AUTH_CONFIG = {
                 session.user.id = user.id;
                 session.user.accessToken = user.accessToken;
                 session.user.login = user.login;
+                session.user.balance = user.balance;
+                session.user.ayushManBharatID = user.ayushManBharatID;
             }
             return session
         }
